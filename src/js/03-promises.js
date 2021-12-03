@@ -30,6 +30,10 @@ form.addEventListener("submit", evt => {
   timerId = setInterval(() => {
     delay += Number(stepInput.value);
     position += 1;
+
+    if(position === 1){
+      delay = Number(delayInput.value);
+    }
     
     createPromise(position, delay)
     .then(({ position, delay }) => {
