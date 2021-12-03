@@ -34,18 +34,21 @@ form.addEventListener("submit", evt => {
     if(position === 1){
       delay = Number(delayInput.value);
     }
-    
-    createPromise(position, delay)
-    .then(({ position, delay }) => {
-      console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-    })
-    .catch(({ position, delay }) => {
-      console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-    });
 
-    if(position === Number(amountInput.value)){
+    if(Number(amountInput.value) === position){
       clearInterval(timerId);
     }
+    
+    if(Number(amountInput.value) > 0){
+      createPromise(position, delay)
+      .then(({ position, delay }) => {
+        console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+      })
+      .catch(({ position, delay }) => {
+        console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+      });
+    }
+    
   }, stepInput.value);
 
 })
