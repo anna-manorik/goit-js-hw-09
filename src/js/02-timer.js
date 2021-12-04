@@ -35,19 +35,9 @@ function dateChooser() {
 }
 
 
-function convertMs(ms) {
-    const second = 1000;
-    const minute = second * 60;
-    const hour = minute * 60;
-    const day = hour * 24;
- 
-    const days = Math.floor(ms / day);
-    const hours = Math.floor((ms % day) / hour);
-    const minutes = Math.floor(((ms % day) % hour) / minute);
-    const seconds = Math.floor((((ms % day) % hour) % minute) / second);
-  
-    return { days, hours, minutes, seconds };
-}
+startBtn.addEventListener("click", evt => {
+    timerId += setInterval(updateInterface, 1000);
+})
 
 function updateInterface() {
     const selectedDate = new Date(dateInput.value).getTime();
@@ -67,11 +57,23 @@ function updateInterface() {
     }
 }
 
+function convertMs(ms) {
+    const second = 1000;
+    const minute = second * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
+ 
+    const days = Math.floor(ms / day);
+    const hours = Math.floor((ms % day) / hour);
+    const minutes = Math.floor(((ms % day) % hour) / minute);
+    const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+  
+    return { days, hours, minutes, seconds };
+}
+
 function addLeadingZero(value) {
     return value.toString().padStart(2, '0');
 }
 
-startBtn.addEventListener("click", evt => {
-    timerId += setInterval(updateInterface, 1000);
-})
+
 
